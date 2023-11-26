@@ -19,19 +19,19 @@ st.title('Churn Customers - Prediction Web App')
 
 st.write('Please complete the info below and click on Predict to get results')
 
-CreditScore = st.number_input('Credit Score', format='%d', min_value=0)
+CreditScore = st.number_input('Credit Score', format='%d', min_value=0, max_value=850)
 
 Geography = st.selectbox('Country',['Germany','France','Spain'])
 
 Gender = st.selectbox('Gender', ['Male','Female'])
 
-Age = st.number_input('Age', format='%d', min_value=18)
+Age = st.number_input('Age', format='%d', min_value=18, max_value=130)
 
-Tenure = st.number_input('Tenure', format='%d', min_value=0)
+Tenure = st.number_input('Tenure', format='%d', min_value=0, max_value=130)
                       
 Balance = st.number_input('Balance')
 
-NumOfProducts = st.number_input('Number of Products')
+NumOfProducts = st.number_input('Number of Products', min_value=0)
 
 HasCrCard = st.checkbox('Has a Credit Card')
 
@@ -41,9 +41,14 @@ EstimatedSalary = st.number_input('Estimated Salary')
 
 data = {'CreditScore':CreditScore, 'Geography':Geography, 'Gender':Gender, 'Age':Age, 'Tenure':Tenure, 'Balance':Balance, 'NumOfProducts':NumOfProducts, 'HasCrCard':HasCrCard, 'IsActiveMember':IsActiveMember, 'EstimatedSalary':EstimatedSalary}
 
+st.write("")
+
+st.write('### Results')
+
 df = pd.DataFrame(data, index=[0])
 
-st.dataframe(df)
+
+st.expander("View inputs here...").dataframe(df)
 
 x_transformed = preprocessor.transform(df)
 
@@ -55,11 +60,11 @@ if predict:
     if CreditScore == 0.00 or Age == 00 or Tenure == 0.00 or Balance == 0.00:
         st.info("Some values were computed as 0.")
         if y_pred == 0:
-            st.info('This customer will less likely leave in the near future')
+            st.success('This customer will less likely leave in the near future')
         else:
-            st.info('This customer will likely leave in the near future')
+            st.warning('This customer will likely leave in the near future')
     else:  
         if y_pred == 0:
-            st.info('This customer will less likely leave in the near future')
+            st.success('This customer will less likely leave in the near future')
         else:
-            st.info('This customer will likely leave in the near future')
+            st.warning('This customer will likely leave in the near future')
