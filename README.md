@@ -1,7 +1,7 @@
-# Bank Churn
+# Bank Customers Churn
 
 ## Dataset
-The dataset contains a sample of 1000 bank customers who have either cancelled their membership or continued with their membership. The data is owned by Santosh Kumar and published on Kaggle.com.
+The dataset contains a sample of 1000 bank customers who have either cancelled their membership or continued with their membership. The bank's name is unknown. The data is owned by Santosh Kumar and published on Kaggle.com.
 
 ## Aim of the project
 The project aims to produce a solution that predicts if a potential bank customer will leave the bank in the near future. 
